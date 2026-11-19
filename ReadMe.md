@@ -1,3 +1,6 @@
+#  CloudOps Incident Manager
+## End-to-end cloud-native DevOps project
+```
 cloudops-platform/
 │
 ├── backend/
@@ -9,46 +12,32 @@ cloudops-platform/
 │       └── schemas.py
 │
 ├── frontend/
+│   ├── src/
+│   ├── Dockerfile
+│   └── nginx.conf
 │
-├── docker/
-│
-├── .gitignore
-└── README.md
-
-cloudops-platform/
-│
-├── frontend/
-├── backend/
 ├── database/
 │
 ├── docker/
 │
-├── terraform/
-│   ├── modules/
-│   └── environments/
-│
-├── ansible/
-│
 ├── kubernetes/
-│   ├── deployments/
-│   ├── services/
-│   └── ingress/
-│
-├── helm/
+│   ├── backend/
+│   ├── frontend/
+│   ├── database/
+│   └── monitoring/
 │
 ├── monitoring/
 │   ├── prometheus/
-│   ├── grafana/
-│   └── alertmanager/
+│   └── grafana/
 │
-├── .github/
-│   └── workflows/
-│
+├── .gitignore
+├── docker-compose.yml
 └── README.md
-└── docker-compose.yml
+```
+
 
 CloudOps Incident Manager
-End-to-end cloud-native DevOps project
+
 
 1. Application development
    - React frontend
@@ -64,7 +53,6 @@ End-to-end cloud-native DevOps project
    - Application metrics
    - Infrastructure dashboards
 3. Kubernetes orchestration
-   Upcoming
    - Deployments and Pods
    - Services
    - ConfigMaps and Secrets

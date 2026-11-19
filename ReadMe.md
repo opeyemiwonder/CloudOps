@@ -87,9 +87,10 @@ cloudops-platform/
    - Disaster recovery
    - Technical architecture documentation
 
-
-|Prometheus:  http://prometheus:9090|
-|Grafana: http://localhost:3000|
-|Backend:  http://127.0.0.1:8000|
-|Frontend:  http://localhost:5173|
-|Swagger: http://localhost:8000/docs|
+|     Service    |            Url                    |
+| ---------------|-----------------------------------|
+|Prometheus      | http://prometheus:9090            |
+|Grafana         | http://localhost:3000             |
+|Backend         | http://127.0.0.1:8000             |
+|Frontend        | http://localhost:5173             |
+|Swagger         |http://localhost:8000/docs         |

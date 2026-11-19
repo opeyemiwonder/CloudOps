@@ -36,9 +36,6 @@ cloudops-platform/
 ```
 
 
-CloudOps Incident Manager
-
-
 1. Application development
    - React frontend
    - Python FastAPI backend
@@ -91,8 +88,8 @@ CloudOps Incident Manager
    - Technical architecture documentation
 
 
-Prometheus:  http://prometheus:9090
-Grafana: http://localhost:3000
-Backend:  http://127.0.0.1:8000/
-Frontend:  http://localhost:5173/
-Swagger: http://localhost:8000/docs
+|Prometheus:  http://prometheus:9090|
+|Grafana: http://localhost:3000|
+|Backend:  http://127.0.0.1:8000|
+|Frontend:  http://localhost:5173|
+|Swagger: http://localhost:8000/docs|

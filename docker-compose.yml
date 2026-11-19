@@ -1,0 +1,80 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: cloudops-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: cloudops
+      POSTGRES_PASSWORD: cloudops_dev_password
+      POSTGRES_DB: cloudops
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cloudops -d cloudops"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: cloudops-backend
+    restart: unless-stopped
+
+    environment:
+      DATABASE_URL: postgresql+psycopg://cloudops:cloudops_dev_password@db:5432/cloudops
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: cloudops-frontend
+    restart: unless-stopped
+
+    environment:
+      VITE_API_URL: http://localhost:8000
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: cloudops-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      - backend
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: cloudops-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:

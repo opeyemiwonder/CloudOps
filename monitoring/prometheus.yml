@@ -1,0 +1,30 @@
+# Global configurations apply as defaults to all scraping jobs
+global:
+  scrape_interval: 15s     # How frequently to scrape targets (default is 1m)
+  evaluation_interval: 15s # How frequently to evaluate alerting rules (default is 1m)
+  scrape_timeout: 10s      # Timeout for individual scrape requests
+
+# Rule files containing alerting and recording rules
+rule_files:
+  - "alert_rules.yml"
+  - "recording_rules.yml"
+
+# Alertmanager configuration specifies how Prometheus forwards alerts
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "localhost:9093"
+
+# Scrape configurations define what resources Prometheus monitors
+scrape_configs:
+  # Job 1: Monitor Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Job 2: Monitor backend server
+  - job_name: "cloudops-backend"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["backend:8000"]
